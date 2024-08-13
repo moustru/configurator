@@ -147,42 +147,15 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
             className="container"
             innerRef={scrollContainerRef}
             style={{
-              width: "80%",
+              width: "100%",
               display: "flex",
               justifyContent: "flex-start",
             }}
           >
-            <S.RenderImage
-              ref={imageRef}
-              $isZoomed={isZoomed}
-              src={image}
-              alt={"3D-image"}
-            />
+            <S.RenderImage ref={imageRef} src={image} alt={"3D-image"} />
           </ScrollContainer>
         </S.RenderHouseWrapper>
       </S.Viewer3D>
-
-      <IconZoomOut />
-
-      {!twoDimensional && (
-        <ActionIcon
-          onClick={() => setIsZoomed(!isZoomed)}
-          pos="absolute"
-          top="24px"
-          right="14%"
-          w={rem(48)}
-          h={rem(48)}
-        >
-          {isZoomed ? (
-            <IconZoomOut
-              style={{ width: "80%", height: "80%", color: "white.0" }}
-              stroke={1.5}
-            />
-          ) : (
-            <IconZoomIn style={{ width: "80%", height: "80%" }} stroke={1.5} />
-          )}
-        </ActionIcon>
-      )}
 
       <Switch
         size="xl"

@@ -8,7 +8,7 @@ import {
   setHeight,
 } from "../../../redux/slices/sliderbarReducer";
 
-import { Select, Slider, Text } from "@mantine/core";
+import { Flex, rem, Select, Slider, Stack, Text } from "@mantine/core";
 
 const Panel: FC = () => {
   const { panel } = useSelector((state) => state.sidebar);
@@ -50,22 +50,36 @@ const Panel: FC = () => {
 
   return (
     <>
-      <Select
-        label="Цвет"
-        value={panel.color}
-        data={panels}
-        onChange={handleChangeColor}
-        rightSection={
-          <div
+      <Text size="sm" color="white.0">
+        Цвет
+      </Text>
+      <Flex wrap="wrap" gap={rem(12)}>
+        {panels.map((pan) => (
+          <Stack
+            w={rem(96)}
+            h={rem(96)}
+            pos="relative"
+            key={pan.color + pan.label}
+            onClick={() => handleChangeColor(pan.label)}
             style={{
-              backgroundColor: panels.find((pan) => pan.value === panel.color)
-                ?.color,
-              width: "32px",
-              height: "32px",
+              border: "2px solid transparent",
+              borderColor: pan.label === panel.color ? "white" : "transparent",
             }}
-          />
-        }
-      />
+          >
+            <Stack bg={pan.color} w="100%" h="100%" />
+            <Text
+              pos="absolute"
+              bottom={0}
+              left={0}
+              w="100%"
+              bg="rgba(255, 255, 255, .5)"
+              ta="center"
+            >
+              {pan.label}
+            </Text>
+          </Stack>
+        ))}
+      </Flex>
       <Select
         label="Высота"
         value={String(panel.height)}

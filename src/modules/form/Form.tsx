@@ -64,7 +64,7 @@ const Form: FC<IProps> = ({ isFormExpanded }) => {
       pos="absolute"
       top="120px"
       left="16px"
-      w="20%"
+      w="350px"
       p={rem(16)}
       justify="flex-start"
       bg="rgba(0, 0, 0, .4)"
