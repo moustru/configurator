@@ -63,6 +63,7 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
     generateImageFromHTML().then((img) => {
       setImage(img);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [buttonPanel, buttonTile, panel, tile.size, tile[tile.size]]);
 
   useEffect(() => {
@@ -78,6 +79,7 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
     }
     initTileCanvas(tileCanvasRef.current);
     initPanelCanvas(panelCanvasRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [height, width]);
 
   useEffect(() => {
@@ -113,6 +115,7 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
         isTileSize71
       );
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [height, width, hidden, tile.size, tile[tile.size], twoDimensional]);
 
   useEffect(() => {

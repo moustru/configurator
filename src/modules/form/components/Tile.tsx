@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC, useState, useEffect, MouseEvent } from "react";
+import { FC, useEffect, MouseEvent } from "react";
 import { useSelector, useDispatch } from "../../../redux";
 
 import ClearIcon from "@mui/icons-material/Clear";
@@ -58,20 +58,13 @@ const handleStyle = new Array(5).fill({
 handleStyle.push({ display: "none" });
 
 // @ts-ignore
-const Tile: FC<IProps> = ({ handleClickChooseButton, hidden }) => {
-  const { isDark } = useSelector((state) => state.theme);
+const Tile: FC<IProps> = ({ handleClickChooseButton }) => {
   const { tile } = useSelector((state) => state.sidebar);
-  const [tileValue, setTileValue] = useState([] as number[]);
   const dispatch = useDispatch();
 
   const handleChangeSize = (value: string | null) => {
     dispatch(setSize(Number(value) as 85 | 71));
   };
-
-  useEffect(() => {
-    setTileValue(tile[tile.size].map((tile: { value: any }) => tile.value));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tile[tile.size].length]);
 
   const tileJSON = JSON.stringify(tile);
   useEffect(() => {

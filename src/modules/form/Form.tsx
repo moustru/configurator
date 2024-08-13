@@ -1,18 +1,18 @@
 import { FC, useState, useEffect, MouseEvent } from "react";
 
-import { store, useSelector } from "../../redux";
-import useWindowSize from "../../hooks/useWindowSize";
+import { useSelector } from "../../redux";
 
 import Panel from "./components/Panel";
 import Tile from "./components/Tile";
 import ChooseColor from "./components/ChooseColor";
 
-import {
-  downloadJPEGPanel,
-  downloadJPEGTile71,
-  downloadJPEGTile85,
-} from "../save/downloadJPEG";
-import { save3D } from "../save/save3D";
+// import {
+//   downloadJPEGPanel,
+//   downloadJPEGTile71,
+//   downloadJPEGTile85,
+// } from "../save/downloadJPEG";
+// import { save3D } from "../save/save3D";
+// import MenuMobile from "./components/MenuMobile/MenuMobile";
 import { rem, Stack } from "@mantine/core";
 
 interface IProps {
@@ -20,37 +20,40 @@ interface IProps {
   expandForm: (isFormExpanded: boolean) => void;
 }
 
-const Form: FC<IProps> = ({ isFormExpanded, expandForm }) => {
-  const { isMobile } = useWindowSize();
+// const Form: FC<IProps> = ({ isFormExpanded, expandForm }) => {
+const Form: FC<IProps> = ({ isFormExpanded }) => {
+  // const { isMobile } = useWindowSize();
   const [isColorChooserOpened, ColorChooseOpen] = useState(false);
-  const state = store.getState().sidebar;
+  // const state = store.getState().sidebar;
 
-  const { buttonPanel, buttonTile } = useSelector((state) => state.sidebar);
-  const [dialogIsOpen, setDialogIsOpen] = useState<boolean>(false);
+  const { buttonPanel } = useSelector((state) => state.sidebar);
+
+  // const { buttonPanel, buttonTile } = useSelector((state) => state.sidebar);
+  // const [dialogIsOpen, setDialogIsOpen] = useState<boolean>(false);
 
   const handleClickChooseButton = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     ColorChooseOpen(true);
   };
 
-  const handleClickSaveJPEG = () => {
-    const width = 1000;
-    const height = 1000;
-    const multiplier = 1;
+  // const handleClickSaveJPEG = () => {
+  //   const width = 1000;
+  //   const height = 1000;
+  //   const multiplier = 1;
 
-    if (state.buttonPanel) {
-      downloadJPEGPanel(state, width, height, multiplier);
-    }
+  //   if (state.buttonPanel) {
+  //     downloadJPEGPanel(state, width, height, multiplier);
+  //   }
 
-    if (state.buttonTile) {
-      if (state.tile.size === 71) {
-        downloadJPEGTile71(state, width, height, multiplier);
-      }
-      if (state.tile.size === 85) {
-        downloadJPEGTile85(state, width, height, multiplier);
-      }
-    }
-  };
+  //   if (state.buttonTile) {
+  //     if (state.tile.size === 71) {
+  //       downloadJPEGTile71(state, width, height, multiplier);
+  //     }
+  //     if (state.tile.size === 85) {
+  //       downloadJPEGTile85(state, width, height, multiplier);
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     ColorChooseOpen(false);

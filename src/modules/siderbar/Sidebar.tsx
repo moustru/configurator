@@ -1,17 +1,11 @@
 import { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../redux";
+import { useDispatch } from "react-redux";
 import { setType } from "../../redux/slices/sliderbarReducer";
 
-import * as S from "./Sidebar.styled";
 import { rem, Tabs } from "@mantine/core";
 import { IconSolarPanel, IconWall } from "@tabler/icons-react";
 
 const Sidebar: FC = () => {
-  const { isDark } = useSelector((state: RootState) => state.theme);
-  const { buttonPanel, buttonTile } = useSelector(
-    (state: RootState) => state.sidebar
-  );
   const dispatch = useDispatch();
 
   const onClickPanelButton = () => {
