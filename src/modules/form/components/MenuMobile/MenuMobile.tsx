@@ -87,7 +87,7 @@ const MenuMobile: FC = () => {
         <S.MenuStyledItem onClick={handleClickSaveJPEG}>
           Скачать JPEG (2D)
         </S.MenuStyledItem>
-        <S.MenuStyledItem onClick={() => save3D("PDF")}>
+        <S.MenuStyledItem onClick={() => save3D()}>
           Скачать PDF (3D)
         </S.MenuStyledItem>
         <S.MenuStyledItem onKeyDown={handleChange}>
