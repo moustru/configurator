@@ -71,7 +71,7 @@ export const RenderHouseWrapper = styled.div`
 
 export const RenderImage = styled.img<{ $isZoomed?: boolean }>`
   min-width: 1920px;
-  min-height: 1080px;
+  min-height: 900px;
   max-width: 3840px;
   max-height: 2160px;
 `;
