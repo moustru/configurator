@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ITile } from "../../static/tile";
+import { ITile, tileData } from "../../static/tile";
 import {
   loadAddedTile,
   loadPanel,
@@ -10,7 +10,6 @@ import {
   loadPanelPDF,
   removeTilePDF,
 } from "../../modules/canvas/DrawPDF";
-import { selectTileInData } from "../../modules/utils/chooseTile";
 
 interface IState {
   buttonPanel: boolean;
@@ -25,6 +24,14 @@ interface IState {
     71: ITile[];
     size: 85 | 71;
   };
+}
+
+export const tileSelected: boolean[] = new Array(
+  tileData[85].length + tileData[71].length
+).fill(false);
+
+export function selectTileInData(tile: ITile, isSelected: boolean) {
+  tileSelected[tile.id - 1] = isSelected;
 }
 
 const initialState: IState = {

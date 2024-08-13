@@ -11,6 +11,7 @@ export const LandingView = styled.div<IProps>`
     props.$isDark ? props.theme.colors.black : props.theme.colors.white};
   padding: 32px 0px 0px 32px;
   position: relative;
+  text-align: center;
 
   @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
     padding: 32px 27px 0px 32px;

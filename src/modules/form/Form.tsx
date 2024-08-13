@@ -3,25 +3,16 @@ import { FC, useState, useEffect, MouseEvent } from "react";
 import { store, useSelector } from "../../redux";
 import useWindowSize from "../../hooks/useWindowSize";
 
-import * as S from "./Form.styled";
 import Panel from "./components/Panel";
 import Tile from "./components/Tile";
 import ChooseColor from "./components/ChooseColor";
 
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogActions from "@mui/material/DialogActions";
-import SwitchLabel from "./components/SwitchLabel/SwitchLabel";
 import {
   downloadJPEGPanel,
   downloadJPEGTile71,
   downloadJPEGTile85,
 } from "../save/downloadJPEG";
 import { save3D } from "../save/save3D";
-import MenuMobile from "./components/MenuMobile/MenuMobile";
 import { rem, Stack } from "@mantine/core";
 
 interface IProps {

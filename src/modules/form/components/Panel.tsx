@@ -8,13 +8,11 @@ import {
   setHeight,
 } from "../../../redux/slices/sliderbarReducer";
 
-import { rem, Select, Slider, Space, Text } from "@mantine/core";
+import { Select, Slider, Text } from "@mantine/core";
 
 const Panel: FC = () => {
   const { panel } = useSelector((state) => state.sidebar);
   const dispatch = useDispatch();
-
-  console.log(panel);
 
   const handleChangeWidth = (value: number) => {
     dispatch(setWidth(value));

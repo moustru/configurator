@@ -6,8 +6,10 @@ import { tileData, ITile } from "../../../static/tile";
 
 import * as S from "../Form.styled";
 import { useDispatch, useSelector } from "../../../redux";
-import { setAddTile } from "../../../redux/slices/sliderbarReducer";
-import { tileSelected } from "../../utils/chooseTile";
+import {
+  setAddTile,
+  tileSelected,
+} from "../../../redux/slices/sliderbarReducer";
 
 interface IProps {
   handleClose: () => void;

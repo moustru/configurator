@@ -23,9 +23,9 @@ const MainPage: FC = () => {
   return (
     <>
       <Layout>
-        <Sidebar />
         {buttonPanel || buttonTile ? (
           <>
+            <Sidebar />
             <Form isFormExpanded={isFormExpanded} expandForm={expandForm} />
             <Canvas hidden={isMobile && isFormExpanded} />
           </>

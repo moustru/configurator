@@ -63,7 +63,7 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
     generateImageFromHTML().then((img) => {
       setImage(img);
     });
-  }, [buttonPanel, buttonTile, panel, tile.size]);
+  }, [buttonPanel, buttonTile, panel, tile.size, tile[tile.size]]);
 
   useEffect(() => {
     if (
@@ -78,7 +78,7 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
     }
     initTileCanvas(tileCanvasRef.current);
     initPanelCanvas(panelCanvasRef.current);
-  }, [height, hidden, width]);
+  }, [height, width]);
 
   useEffect(() => {
     if (toInit && !hidden) {
@@ -113,7 +113,7 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
         isTileSize71
       );
     });
-  }, [height, width, hidden, tile.size, twoDimensional, tile]);
+  }, [height, width, hidden, tile.size, tile[tile.size], twoDimensional]);
 
   useEffect(() => {
     /** 2D */

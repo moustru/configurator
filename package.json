@@ -20,7 +20,6 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@tabler/icons-react": "^3.12.0",
     "html-to-image": "^1.11.11",
-    "rc-slider": "^11.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-indiana-drag-scroll": "^2.2.0",

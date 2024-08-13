@@ -3,19 +3,10 @@
 import { FC, useState, useEffect, MouseEvent } from "react";
 import { useSelector, useDispatch } from "../../../redux";
 
-import { InputLabel, SelectChangeEvent } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import AddIcon from "@mui/icons-material/Add";
 import ClearIcon from "@mui/icons-material/Clear";
 import { ITile } from "../../../static/tile";
-import Range from "rc-slider";
-import "rc-slider/assets/index.css";
 
-import {
-  setSize,
-  setTileState,
-  setRemoveTile,
-} from "../../../redux/slices/sliderbarReducer";
+import { setSize, setRemoveTile } from "../../../redux/slices/sliderbarReducer";
 
 import * as S from "../Form.styled";
 import { Button, Select } from "@mantine/core";
@@ -66,10 +57,6 @@ const handleStyle = new Array(5).fill({
 });
 handleStyle.push({ display: "none" });
 
-const trackStyle = new Array(4).fill({
-  backgroundColor: "#FF6720",
-});
-
 // @ts-ignore
 const Tile: FC<IProps> = ({ handleClickChooseButton, hidden }) => {
   const { isDark } = useSelector((state) => state.theme);
@@ -79,21 +66,6 @@ const Tile: FC<IProps> = ({ handleClickChooseButton, hidden }) => {
 
   const handleChangeSize = (value: string | null) => {
     dispatch(setSize(Number(value) as 85 | 71));
-  };
-
-  const handleChangeTileState = (value: number[]) => {
-    if (value[0] < 10) value[0] = 10;
-    for (let i = 1, l = value.length; i < l; ++i) {
-      if (value[i] - value[i - 1] < 10) value[i] = value[i - 1] + 10;
-    }
-    if (value[value.length - 1] !== 100) {
-      value[value.length - 1] = 100;
-      for (let i = value.length - 1; i > 0; --i) {
-        if (value[i] - value[i - 1] < 10) value[i - 1] = value[i] - 10;
-      }
-    }
-    setTileValue(value);
-    dispatch(setTileState(value));
   };
 
   useEffect(() => {
