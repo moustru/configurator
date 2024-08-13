@@ -21,15 +21,13 @@ import {
   updatePanelCanvas,
   updateTileCanvas,
 } from "./Draw";
-import { ActionIcon, rem, Switch } from "@mantine/core";
-import { IconZoomIn, IconZoomOut } from "@tabler/icons-react";
+import { rem, Switch } from "@mantine/core";
 
 let toInit = false;
 
 const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
   const { isDark } = useSelector((state) => state.theme);
   const [twoDimensional, setTwoDimensional] = useState<boolean>(true);
-  const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [image, setImage] = useState<any>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -49,13 +47,6 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
     generateImageFromHTML();
     setLoading(false);
   }, [image]);
-
-  /** onZOOM */
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo(220, 100);
-    }
-  }, [isZoomed]);
 
   /** onChange */
   useEffect(() => {
