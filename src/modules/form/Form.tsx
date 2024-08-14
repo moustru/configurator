@@ -1,6 +1,6 @@
 import { useState, useEffect, MouseEvent } from "react";
 
-import { useSelector } from "../../redux";
+import { store, useSelector } from "../../redux";
 
 import Panel from "./components/Panel";
 import Tile from "./components/Tile";
@@ -13,13 +13,20 @@ import ChooseColor from "./components/ChooseColor";
 // } from "../save/downloadJPEG";
 // import { save3D } from "../save/save3D";
 // import MenuMobile from "./components/MenuMobile/MenuMobile";
-import { rem, Stack } from "@mantine/core";
+import { Button, Flex, rem, Stack } from "@mantine/core";
+import { IconDownload } from "@tabler/icons-react";
+// import { save3D } from "../save/save3D";
+import {
+  downloadJPEGPanel,
+  downloadJPEGTile71,
+  downloadJPEGTile85,
+} from "../save/downloadJPEG";
 
 // const Form: FC<IProps> = ({ isFormExpanded, expandForm }) => {
 const Form = () => {
   // const { isMobile } = useWindowSize();
   const [isColorChooserOpened, ColorChooseOpen] = useState(false);
-  // const state = store.getState().sidebar;
+  const state = store.getState().sidebar;
 
   const { buttonPanel } = useSelector((state) => state.sidebar);
 
@@ -31,24 +38,24 @@ const Form = () => {
     ColorChooseOpen(true);
   };
 
-  // const handleClickSaveJPEG = () => {
-  //   const width = 1000;
-  //   const height = 1000;
-  //   const multiplier = 1;
+  const handleClickSaveJPEG = () => {
+    const width = 1000;
+    const height = 1000;
+    const multiplier = 1;
 
-  //   if (state.buttonPanel) {
-  //     downloadJPEGPanel(state, width, height, multiplier);
-  //   }
+    if (state.buttonPanel) {
+      downloadJPEGPanel(state, width, height, multiplier);
+    }
 
-  //   if (state.buttonTile) {
-  //     if (state.tile.size === 71) {
-  //       downloadJPEGTile71(state, width, height, multiplier);
-  //     }
-  //     if (state.tile.size === 85) {
-  //       downloadJPEGTile85(state, width, height, multiplier);
-  //     }
-  //   }
-  // };
+    if (state.buttonTile) {
+      if (state.tile.size === 71) {
+        downloadJPEGTile71(state, width, height, multiplier);
+      }
+      if (state.tile.size === 85) {
+        downloadJPEGTile85(state, width, height, multiplier);
+      }
+    }
+  };
 
   useEffect(() => {
     ColorChooseOpen(false);
@@ -77,6 +84,23 @@ const Form = () => {
       {isColorChooserOpened ? (
         <ChooseColor handleClose={() => ColorChooseOpen(false)} />
       ) : null}
+
+      <Flex gap={rem(8)} direction={{ xs: "row", md: "column" }}>
+        <Button
+          bg="green.0"
+          leftSection={<IconDownload />}
+          onClick={handleClickSaveJPEG}
+        >
+          Скачать JPG (2D)
+        </Button>
+        {/* <Button
+          bg="green.0"
+          leftSection={<IconDownload />}
+          onClick={() => save3D(buttonPanel ? "print" : "PDF")}
+        >
+          Скачать PDF (3D)
+        </Button> */}
+      </Flex>
     </Stack>
     // <S.FormView $isFormExpanded={isFormExpanded}>
     //   {isMobile ? (
