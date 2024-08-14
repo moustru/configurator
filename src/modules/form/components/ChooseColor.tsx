@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { FC, MouseEvent } from "react";
 
-import AddIcon from "@mui/icons-material/Add";
 import { tileData, ITile } from "../../../static/tile";
 
 import * as S from "../Form.styled";
@@ -50,10 +49,17 @@ const ChooseColor: FC<IProps> = ({ handleClose }) => {
               <div>
                 <S.Background src={tile.background} />
               </div>
-              <S.AddButton onClick={(event) => event.preventDefault()}>
-                {tile.title}{" "}
-                <AddIcon onClick={(event) => handleClickAdd(event, tile)} />
-              </S.AddButton>
+              <div
+                style={{
+                  backgroundColor: "rgba(0, 0, 0, .5)",
+                  width: "100%",
+                  color: "#fff",
+                  padding: "10px 0",
+                  textAlign: "center",
+                }}
+              >
+                {tile.title}
+              </div>
             </S.ColorTile>
           )
         )

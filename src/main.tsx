@@ -2,8 +2,6 @@ import App from "./App";
 import { store } from "./redux";
 import { Provider } from "react-redux";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Color } from "./theme/theme";
 import {
   createTheme as createMantineTheme,
   MantineProvider,
@@ -68,23 +66,10 @@ const mantineTheme = createMantineTheme({
   },
 });
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: Color.BLUE,
-    },
-    secondary: {
-      main: Color.GREY,
-    },
-  },
-});
-
 createRoot(document.getElementById("root")!).render(
   <MantineProvider theme={mantineTheme}>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </MantineProvider>
 );

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle<{ $isDark: boolean }>`
+const GlobalStyle = createGlobalStyle`
   * {
     margin: 0px;
     padding: 0px;
@@ -15,8 +15,6 @@ const GlobalStyle = createGlobalStyle<{ $isDark: boolean }>`
   }
 
   html, body {
-    background: ${(props) =>
-      props.$isDark ? props.theme.colors.black : props.theme.colors.white};
     min-width: 280px;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
@@ -33,11 +31,6 @@ const GlobalStyle = createGlobalStyle<{ $isDark: boolean }>`
   textarea,
   select {
     font: inherit;
-  }
-
-  aside {
-    background: ${(props) =>
-      props.$isDark ? props.theme.colors.black : props.theme.colors.white}
   }
 
   a {
@@ -57,13 +50,6 @@ const GlobalStyle = createGlobalStyle<{ $isDark: boolean }>`
 
   .MuiFormControlLabel-root {
     margin-right: 0px !important;
-  }
-
-  .MuiList-root.MuiMenu-list {
-    background: ${(props) =>
-      props.$isDark ? "#4D4340" : props.theme.colors.white};
-    color: ${(props) =>
-      props.$isDark ? props.theme.colors.white : props.theme.colors.black};
   }
 
   #print {

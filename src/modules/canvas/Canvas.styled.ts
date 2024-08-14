@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
-export const CanvasWrapper = styled.div<{ $isDark: boolean; $hidden: boolean }>`
-  background: ${(props) =>
-    props.$isDark ? props.theme.colors.black : props.theme.colors.white};
-  color: ${(props) =>
-    props.$isDark ? props.theme.colors.black : props.theme.colors.white};
+export const CanvasWrapper = styled.div<{ $hidden: boolean }>`
+  background: #fff;
+  color: #fff;
   width: 100%;
   height: 100%;
   display: ${(props) => (props.$hidden ? "none; visibility: hidden" : "flex")};

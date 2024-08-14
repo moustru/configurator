@@ -270,37 +270,6 @@ export const Background = styled.img`
   max-width: 100%;
 `;
 
-export const AddButton = styled.button`
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 16px;
-  background: #99432a;
-  font-family: IBM Plex Sans, serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  color: ${(props) => props.theme.colors.white};
-  text-transform: uppercase;
-  border: none;
-  border-bottom: 1px solid ${(props) => props.theme.colors.grey};
-  & > div {
-    font-size: 14px !important;
-  }
-
-  & svg {
-    cursor: pointer;
-  }
-
-  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    font-size: 12px;
-    height: 24px;
-    padding: 0 16px;
-  }
-`;
-
 export const Paragraph = styled.p`
   text-align: center;
   color: ${(props) => props.theme.colors.white};

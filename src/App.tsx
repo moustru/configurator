@@ -1,27 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { ThemeProvider } from "styled-components";
-import { RootState } from "./redux";
-import { defaultTheme, Theme } from "./theme/theme";
-import { setTheme } from "./redux/slices/themeReducer";
+import { useDispatch } from "react-redux";
 import { initPanel, initTile } from "./redux/slices/sliderbarReducer";
 import GlobalStyle from "./theme/global";
 import MainPage from "./modules/main/MainPage";
 
 const App: FC = () => {
-  const { isDark } = useSelector((state: RootState) => state.theme);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    if (!theme) {
-      localStorage.setItem("theme", Theme.WHITE);
-      dispatch(setTheme(Theme.WHITE));
-    }
-    dispatch(setTheme(theme as Theme));
-
     const tile = localStorage.getItem("tile");
     if (tile !== null) {
       dispatch(initTile(JSON.parse(tile)));
@@ -67,10 +54,10 @@ const App: FC = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle $isDark={isDark} />
+    <>
+      <GlobalStyle />
       <MainPage />
-    </ThemeProvider>
+    </>
   );
 };
 

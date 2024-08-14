@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ITile } from "../../static/tile";
-import { Color } from "../../theme/theme";
 
 const preset: number[][] = [[Math.random()]];
 
@@ -250,7 +249,7 @@ export function initTileCanvas(canvas: HTMLCanvasElement) {
   canvas.width = tileCanvasWidth;
 
   tileCanvasCtx = canvas.getContext("2d", { alpha: false });
-  tileCanvasCtx.fillStyle = Color.GREY;
+  tileCanvasCtx.fillStyle = "#010504";
 
   initTilePreset(tileCanvasWidth, tileCanvasHeight);
   initDrawTileCanvas(tileCanvasCtx, tileCanvasWidth, tileCanvasHeight);
@@ -292,6 +291,6 @@ export function initPanelCanvas(canvas: HTMLCanvasElement) {
   canvas.width = panelCanvasWidth;
 
   panelCanvasCtx = canvas.getContext("2d", { alpha: false });
-  panelCanvasCtx.fillStyle = Color.GREY;
+  panelCanvasCtx.fillStyle = "#010504";
   panelCanvasCtx.fillRect(0, 0, panelCanvasWidth, panelCanvasHeight);
 }

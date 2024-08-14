@@ -3,14 +3,13 @@
 import { FC, useEffect, MouseEvent } from "react";
 import { useSelector, useDispatch } from "../../../redux";
 
-import ClearIcon from "@mui/icons-material/Clear";
 import { ITile } from "../../../static/tile";
 
 import { setSize, setRemoveTile } from "../../../redux/slices/sliderbarReducer";
 
 import * as S from "../Form.styled";
 import { Button, Select } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
+import { IconPlus, IconX } from "@tabler/icons-react";
 
 interface IProps {
   handleClickChooseButton: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -42,7 +41,7 @@ function TileElement({
         <S.DivFlex>
           {`${value}%`}
           <S.DivFlex>
-            <ClearIcon onClick={(event) => handleClickRemove(event, tile)} />
+            <IconX onClick={(event) => handleClickRemove(event, tile)} />
           </S.DivFlex>
         </S.DivFlex>
       </S.T>

@@ -5,7 +5,6 @@ import { useSelector } from "../../redux";
 import ScrollContainer from "react-indiana-drag-scroll";
 import useWindowSize from "../../hooks/useWindowSize";
 import * as S from "./Canvas.styled";
-import { CircularProgress } from "@mui/material";
 import { generateImageFromHTML } from "../save/save3D";
 import {
   initPanelCanvas,
@@ -21,12 +20,11 @@ import {
   updatePanelCanvas,
   updateTileCanvas,
 } from "./Draw";
-import { rem, Switch } from "@mantine/core";
+import { Loader, rem, Switch } from "@mantine/core";
 
 let toInit = false;
 
 const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
-  const { isDark } = useSelector((state) => state.theme);
   const [twoDimensional, setTwoDimensional] = useState<boolean>(true);
   const [image, setImage] = useState<any>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -124,7 +122,7 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
   }, [height, width, hidden, panel, twoDimensional]);
 
   return (
-    <S.CanvasWrapper $isDark={isDark} $hidden={hidden}>
+    <S.CanvasWrapper $hidden={hidden}>
       <S.Viewer2D $open={twoDimensional}>
         <S.Canvas ref={tileCanvasRef} $isVisible={buttonTile} />
         <S.Canvas ref={panelCanvasRef} $isVisible={buttonPanel} />
@@ -132,7 +130,7 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
 
       <S.Viewer3D $open={!twoDimensional}>
         <S.RenderHouseWrapper>
-          {loading && <CircularProgress style={{ position: "absolute" }} />}
+          {loading && <Loader pos="absolute" />}
 
           <ScrollContainer
             className="container"
