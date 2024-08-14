@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC, useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector } from "../../redux";
 import ScrollContainer from "react-indiana-drag-scroll";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -24,7 +24,7 @@ import { Loader, rem, Switch } from "@mantine/core";
 
 let toInit = false;
 
-const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
+const Canvas = () => {
   const [twoDimensional, setTwoDimensional] = useState<boolean>(true);
   const [image, setImage] = useState<any>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -62,28 +62,23 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
       height === 0
     )
       return;
-    if (hidden) {
-      toInit = true;
-      return;
-    }
     initTileCanvas(tileCanvasRef.current);
     initPanelCanvas(panelCanvasRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [height, width]);
 
   useEffect(() => {
-    if (toInit && !hidden) {
+    if (toInit) {
       // @ts-expect-error
       initTileCanvas(tileCanvasRef.current);
       //@ts-ignore
       initPanelCanvas(panelCanvasRef.current);
       toInit = false;
     }
-  }, [hidden]);
+  });
 
   useEffect(() => {
     /** 2D */
-    if (tileCanvasRef.current === null || hidden || !twoDimensional) return;
+    if (tileCanvasRef.current === null || !twoDimensional) return;
     let offset = 0;
     let height = 24; //when tile size = 85
     if (tile.size === 71) {
@@ -105,11 +100,11 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [height, width, hidden, tile.size, tile[tile.size], twoDimensional]);
+  }, [height, width, tile.size, tile[tile.size], twoDimensional]);
 
   useEffect(() => {
     /** 2D */
-    if (panelCanvasRef.current === null || hidden || !twoDimensional) return;
+    if (panelCanvasRef.current === null || !twoDimensional) return;
     setPanelCallbackTimed(function () {
       updatePanelCanvas(
         panel,
@@ -119,10 +114,10 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
         panelCanvasHeight
       );
     });
-  }, [height, width, hidden, panel, twoDimensional]);
+  }, [height, width, panel, twoDimensional]);
 
   return (
-    <S.CanvasWrapper $hidden={hidden}>
+    <S.CanvasWrapper>
       <S.Viewer2D $open={twoDimensional}>
         <S.Canvas ref={tileCanvasRef} $isVisible={buttonTile} />
         <S.Canvas ref={panelCanvasRef} $isVisible={buttonPanel} />
@@ -153,7 +148,8 @@ const Canvas: FC<{ hidden: boolean }> = ({ hidden }) => {
         color="blue.0"
         checked={!twoDimensional}
         pos="absolute"
-        bottom={rem(16)}
+        bottom={{ md: rem(16) }}
+        top={{ xs: rem(16) }}
         right={rem(16)}
         onChange={(event) => setTwoDimensional(!event.currentTarget.checked)}
       />

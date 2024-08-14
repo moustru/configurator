@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, MouseEvent } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 
 import { useSelector } from "../../redux";
 
@@ -15,13 +15,8 @@ import ChooseColor from "./components/ChooseColor";
 // import MenuMobile from "./components/MenuMobile/MenuMobile";
 import { rem, Stack } from "@mantine/core";
 
-interface IProps {
-  isFormExpanded: boolean;
-  expandForm: (isFormExpanded: boolean) => void;
-}
-
 // const Form: FC<IProps> = ({ isFormExpanded, expandForm }) => {
-const Form: FC<IProps> = ({ isFormExpanded }) => {
+const Form = () => {
   // const { isMobile } = useWindowSize();
   const [isColorChooserOpened, ColorChooseOpen] = useState(false);
   // const state = store.getState().sidebar;
@@ -62,24 +57,23 @@ const Form: FC<IProps> = ({ isFormExpanded }) => {
   return (
     <Stack
       pos="absolute"
-      top="120px"
-      left="16px"
-      w="350px"
+      top={{ md: "77px" }}
+      bottom={{ xs: 0 }}
+      left={0}
+      w={{ base: "100%", lg: "350px", md: "300px" }}
       p={rem(16)}
       justify="flex-start"
       bg="rgba(0, 0, 0, .4)"
       style={{ zIndex: 1 }}
     >
-      {isFormExpanded ? (
-        buttonPanel ? (
-          <Panel />
-        ) : (
-          <Tile
-            handleClickChooseButton={handleClickChooseButton}
-            hidden={isColorChooserOpened}
-          />
-        )
-      ) : null}
+      {buttonPanel ? (
+        <Panel />
+      ) : (
+        <Tile
+          handleClickChooseButton={handleClickChooseButton}
+          hidden={isColorChooserOpened}
+        />
+      )}
       {isColorChooserOpened ? (
         <ChooseColor handleClose={() => ColorChooseOpen(false)} />
       ) : null}

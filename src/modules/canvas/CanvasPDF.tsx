@@ -19,7 +19,6 @@ let toInit3D = true;
 
 const hidden = false;
 const twoDimensional = false;
-const isDark = false;
 
 const CanvasPDF: FC = () => {
   const {
@@ -196,7 +195,7 @@ const CanvasPDF: FC = () => {
   }, [height, width, tile.size, panel, buttonTile, tile]);
 
   return (
-    <S.CanvasWrapper $isDark={isDark} $hidden={hidden}>
+    <S.CanvasWrapper>
       <S.Viewer2D $open={twoDimensional}>
         <S.Canvas ref={tileCanvasPDFRef} $isVisible={false} />
         <S.Canvas ref={panelCanvasPDFRef} $isVisible={false} />

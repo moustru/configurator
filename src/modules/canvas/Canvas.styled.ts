@@ -1,19 +1,14 @@
 import styled from "styled-components";
 
-export const CanvasWrapper = styled.div<{ $hidden: boolean }>`
+export const CanvasWrapper = styled.div`
   background: #fff;
   color: #fff;
   width: 100%;
   height: 100%;
-  display: ${(props) => (props.$hidden ? "none; visibility: hidden" : "flex")};
+  display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-
-  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    order: -1;
-    justify-content: space-evenly;
-  }
 `;
 
 export const Viewer2D = styled.div<{ $open: boolean }>`
@@ -69,7 +64,7 @@ export const RenderHouseWrapper = styled.div`
 
 export const RenderImage = styled.img<{ $isZoomed?: boolean }>`
   min-width: 1920px;
-  min-height: 900px;
+  min-height: 100%;
   max-width: 3840px;
   max-height: 2160px;
 `;

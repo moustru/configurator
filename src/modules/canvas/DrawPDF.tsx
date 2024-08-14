@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ITile } from "../../static/tile";
-import { Color } from "../../theme/theme";
 
 const presetPDF: number[][] = [[Math.random()]];
 
@@ -248,7 +247,7 @@ export function initTileCanvasPDF(canvas: HTMLCanvasElement) {
   canvas.width = tileCanvasWidthPDF;
 
   tileCanvasCtxPDF = canvas.getContext("2d", { alpha: false });
-  tileCanvasCtxPDF.fillStyle = Color.GREY;
+  tileCanvasCtxPDF.fillStyle = "#010504";
 
   initTilePresetPDF(tileCanvasWidthPDF, tileCanvasHeightPDF);
   initDrawTileCanvasPDF(
@@ -293,6 +292,6 @@ export function initPanelCanvasPDF(canvas: HTMLCanvasElement) {
   canvas.width = panelCanvasWidthPDF;
 
   panelCanvasCtxPDF = canvas.getContext("2d", { alpha: false });
-  panelCanvasCtxPDF.fillStyle = Color.GREY;
+  panelCanvasCtxPDF.fillStyle = "#010504";
   panelCanvasCtxPDF.fillRect(0, 0, panelCanvasWidthPDF, panelCanvasHeightPDF);
 }

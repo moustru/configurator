@@ -2,13 +2,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { FC, useEffect, MouseEvent } from "react";
 import { useSelector, useDispatch } from "../../../redux";
-
 import { ITile } from "../../../static/tile";
-
 import { setSize, setRemoveTile } from "../../../redux/slices/sliderbarReducer";
-
-import * as S from "../Form.styled";
-import { Button, Select } from "@mantine/core";
+import { Button, Flex, Image, rem, Select, Text } from "@mantine/core";
 import { IconPlus, IconX } from "@tabler/icons-react";
 
 interface IProps {
@@ -32,20 +28,41 @@ function TileElement({
     dispatch(setRemoveTile(tile));
   };
   return (
-    <S.TileOption $value={value}>
-      <S.T>
-        <span>{tile.title}</span>
-        <S.PreviewTileDiv>
-          <S.PreviewTile src={tile.background} />
-        </S.PreviewTileDiv>
-        <S.DivFlex>
-          {`${value}%`}
-          <S.DivFlex>
-            <IconX onClick={(event) => handleClickRemove(event, tile)} />
-          </S.DivFlex>
-        </S.DivFlex>
-      </S.T>
-    </S.TileOption>
+    <Flex
+      w={{ base: "100%", xs: "32%", md: "100%" }}
+      h={{ xs: "20%", md: rem(32) }}
+      align="center"
+      justify="space-between"
+      direction={{ base: "row", xs: "column", md: "row" }}
+      bg="#cbcbcb"
+      mb={rem(8)}
+      p={rem(8)}
+      style={{
+        borderRadius: rem(4),
+      }}
+    >
+      <Text w={rem(100)} visibleFrom="md">
+        {tile.title}
+      </Text>
+      <Text w="100%" visibleFrom="xs" hiddenFrom="md" size="sm">
+        {tile.title}
+      </Text>
+      <Image src={tile.background} mah="100%" />
+      <Flex
+        w={{ xs: "100%", md: "auto" }}
+        mt={{ xs: rem(10), md: 0 }}
+        justify={{ xs: "space-between", md: "flex-start" }}
+      >
+        <Text visibleFrom="md">{value}%</Text>
+        <Text visibleFrom="xs" hiddenFrom="md" size="sm">
+          {value}%
+        </Text>
+        <IconX
+          onClick={(event) => handleClickRemove(event, tile)}
+          cursor="pointer"
+        />
+      </Flex>
+    </Flex>
   );
 }
 
@@ -85,42 +102,40 @@ const Tile: FC<IProps> = ({ handleClickChooseButton }) => {
       />
 
       {tile[tile.size].length ? (
-        <S.SizeWrapper>
-          <S.TileWrapper>
-            {tile[tile.size][0] === undefined ? null : (
-              <TileElement
-                tile={tile[tile.size][0]}
-                value={tile[tile.size][0].value}
-              />
-            )}
-            {tile[tile.size][1] === undefined ? null : (
-              <TileElement
-                tile={tile[tile.size][1]}
-                value={tile[tile.size][1].value - tile[tile.size][0].value}
-              />
-            )}
-            {tile[tile.size][2] === undefined ? null : (
-              <TileElement
-                tile={tile[tile.size][2]}
-                value={tile[tile.size][2].value - tile[tile.size][1].value}
-              />
-            )}
-            {tile[tile.size][3] === undefined ? null : (
-              <TileElement
-                tile={tile[tile.size][3]}
-                value={tile[tile.size][3].value - tile[tile.size][2].value}
-              />
-            )}
-            {tile[tile.size][4] === undefined ? null : (
-              <TileElement
-                tile={tile[tile.size][4]}
-                value={tile[tile.size][4].value - tile[tile.size][3].value}
-              />
-            )}
-          </S.TileWrapper>
-        </S.SizeWrapper>
+        <Flex gap="2%" wrap="wrap">
+          {tile[tile.size][0] === undefined ? null : (
+            <TileElement
+              tile={tile[tile.size][0]}
+              value={tile[tile.size][0].value}
+            />
+          )}
+          {tile[tile.size][1] === undefined ? null : (
+            <TileElement
+              tile={tile[tile.size][1]}
+              value={tile[tile.size][1].value - tile[tile.size][0].value}
+            />
+          )}
+          {tile[tile.size][2] === undefined ? null : (
+            <TileElement
+              tile={tile[tile.size][2]}
+              value={tile[tile.size][2].value - tile[tile.size][1].value}
+            />
+          )}
+          {tile[tile.size][3] === undefined ? null : (
+            <TileElement
+              tile={tile[tile.size][3]}
+              value={tile[tile.size][3].value - tile[tile.size][2].value}
+            />
+          )}
+          {tile[tile.size][4] === undefined ? null : (
+            <TileElement
+              tile={tile[tile.size][4]}
+              value={tile[tile.size][4].value - tile[tile.size][3].value}
+            />
+          )}
+        </Flex>
       ) : null}
-      {tile[tile.size].length <= 5 && (
+      {tile[tile.size].length < 5 && (
         <Button leftSection={<IconPlus />} onClick={handleClickChooseButton}>
           Выбрать цвет
         </Button>

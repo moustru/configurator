@@ -64,6 +64,9 @@ const mantineTheme = createMantineTheme({
   headings: {
     fontFamily: "Roboto, sans-serif",
   },
+  breakpoints: {
+    xs: "20em",
+  },
 });
 
 createRoot(document.getElementById("root")!).render(

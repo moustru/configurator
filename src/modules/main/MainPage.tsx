@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 import { useSelector } from "../../redux";
 
 import styled from "styled-components";
@@ -8,17 +8,12 @@ import Form from "../form/Form";
 import Landing from "../landing/Landing";
 import Canvas from "../canvas/Canvas";
 import CanvasPDF from "../canvas/CanvasPDF";
-import useWindowSize from "../../hooks/useWindowSize";
 import Sidebar from "../siderbar/Sidebar";
 
 const MainPage: FC = () => {
   const { buttonPanel, buttonTile } = useSelector((state) => state.sidebar);
-  const [isFormExpanded, expandForm] = useState(false);
-  const { isMobile } = useWindowSize();
-
-  useEffect(() => {
-    if (!isMobile) expandForm(true);
-  }, [isMobile]);
+  // const [isFormExpanded, expandForm] = useState(false);
+  // const { isMobile } = useWindowSize();
 
   return (
     <>
@@ -26,8 +21,8 @@ const MainPage: FC = () => {
         {buttonPanel || buttonTile ? (
           <>
             <Sidebar />
-            <Form isFormExpanded={isFormExpanded} expandForm={expandForm} />
-            <Canvas hidden={isMobile && isFormExpanded} />
+            <Form />
+            <Canvas />
           </>
         ) : (
           <Landing />

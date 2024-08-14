@@ -7,9 +7,5 @@ export const LayoutView = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-top: 77px;
-  background: ${(props) => props.theme.colors.white};
-
-  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    flex-direction: column;
-  }
+  background: #fff;
 `;

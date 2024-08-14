@@ -1,13 +1,11 @@
 import { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../../redux";
-
 import {
   setColor,
   setWidth,
   setHeight,
 } from "../../../redux/slices/sliderbarReducer";
-
 import { Flex, rem, Select, Slider, Stack, Text } from "@mantine/core";
 
 const Panel: FC = () => {
@@ -50,14 +48,24 @@ const Panel: FC = () => {
 
   return (
     <>
-      <Text size="sm" color="white.0">
+      <Text size="sm" c="white.0">
         Цвет
       </Text>
-      <Flex wrap="wrap" gap={rem(12)}>
+      <Flex
+        wrap="wrap"
+        gap={{ base: rem(12), xs: 0, md: rem(12) }}
+        rowGap={{ base: rem(12), xs: rem(8) }}
+      >
         {panels.map((pan) => (
           <Stack
-            w={rem(96)}
-            h={rem(96)}
+            w={{
+              base: rem(96),
+              xs: "20%",
+              sm: "16%",
+              md: rem(72),
+              lg: rem(96),
+            }}
+            h={{ base: rem(96), xs: "72px", md: rem(72), lg: rem(96) }}
             pos="relative"
             key={pan.color + pan.label}
             onClick={() => handleChangeColor(pan.label)}
@@ -86,25 +94,8 @@ const Panel: FC = () => {
         data={heights}
         onChange={handleChangeHeight}
       />
-      {/* <S.StyleFormControl
-        fullWidth={true}
-        $fullHeight={false}
-        sx={{ mt: "33px" }}
-      >
-        <InputLabel id="height">Высота</InputLabel>
-        <S.SelectWithColor
-          labelId="height"
-          value={panel.height}
-          variant="standard"
-          onChange={handleChangeHeight}
-        >
-          <MenuItem value={300}>300 мм</MenuItem>
-          <MenuItem value={400}>400 мм</MenuItem>
-          <MenuItem value={600}>600 мм</MenuItem>
-        </S.SelectWithColor>
-      </S.StyleFormControl> */}
 
-      <Text size="sm" color="white.0">
+      <Text size="sm" c="white.0">
         Ширина, мм
       </Text>
       <Slider
@@ -114,29 +105,6 @@ const Panel: FC = () => {
         max={1500}
         step={50}
       />
-      {/* <S.StyleFormControl
-        fullWidth={true}
-        $fullHeight={false}
-        sx={{ mt: "33px" }}
-      >
-        <S.SliderTitle>
-          Ширина: <span>{panel.width} мм</span>
-        </S.SliderTitle>
-        <Slider
-          value={panel.width}
-          color="primary"
-          onChange={handleChangeWidth}
-          aria-label="Ширина"
-          defaultValue={600}
-          step={50}
-          min={600}
-          max={1500}
-        />
-        <S.Marks>
-          <span>600мм</span>
-          <span>1500мм</span>
-        </S.Marks>
-      </S.StyleFormControl> */}
     </>
   );
 };
